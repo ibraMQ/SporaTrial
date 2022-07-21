@@ -1,12 +1,17 @@
 package com.example.spora_trial.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -33,6 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         txtMail= findViewById(R.id.mailTxt);
         mUserViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
+        //Solicitud de permisos
+        int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(LoginActivity.this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE }, permissionCheck);
+        }
+        else {
+            Toast.makeText(LoginActivity.this, "Permisos concedidos", Toast.LENGTH_SHORT).show();
+        }
+
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,11 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                 List<UserEntity> log= mUserViewModel.getUser(txtMail.getText().toString());
 
                 if(log.isEmpty()){
-                    Intent numbersIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-                    startActivity(numbersIntent);
+                    Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(i);
                 }else {
-                    Intent numbersIntent = new Intent(LoginActivity.this, DirectoryActivity.class);
-                    startActivity(numbersIntent);
+                    Intent i = new Intent(LoginActivity.this, DirectoryActivity.class);
+                    i.putExtra("IMG",log.get(0).img);
+                    startActivity(i);
                 }
             }
         });

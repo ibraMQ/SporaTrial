@@ -99,8 +99,9 @@ public class RegisterActivity  extends AppCompatActivity{
 
                     mUserViewModel.insert(new UserEntity(name,age,email,adress,phone,imgPath));
 
-                    Intent numbersIntent = new Intent(RegisterActivity.this, DirectoryActivity.class);
-                    startActivity(numbersIntent);
+                    Intent i = new Intent(RegisterActivity.this, DirectoryActivity.class);
+                    i.putExtra("IMG",imgPath);
+                    startActivity(i);
                 }
             }
         });
