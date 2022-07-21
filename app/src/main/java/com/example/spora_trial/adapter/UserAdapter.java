@@ -1,6 +1,7 @@
 package com.example.spora_trial.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.spora_trial.R;
 import com.example.spora_trial.UserViewModel;
 import com.example.spora_trial.db.UserEntity;
+import com.example.spora_trial.ui.DirectoryActivity;
+import com.example.spora_trial.ui.RegisterActivity;
 
 import java.util.List;
 
@@ -45,6 +48,10 @@ public class UserAdapter extends RecyclerView.Adapter<ViewHolder>{
                 mUserViewModel.delete(users.get(holder.getAdapterPosition()).id);
                 users.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
+                if(users.isEmpty()){
+                    Intent i = new Intent(context, RegisterActivity.class);
+                    context.startActivity(i);
+                }
             }
         });
     }
