@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }else {
                     //Obtencion de Usuario
-                    List<UserEntity> log = mUserViewModel.getUser(txtMail.getText().toString());
+                    String user = txtMail.getText().toString().replaceAll("\\s+","");
+                    List<UserEntity> log = mUserViewModel.getUser(user);
 
                     if (log.isEmpty()) {
                         Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -83,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         //guardar ultimo usuario
                         SharedPreferences wpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-                        String user = txtMail.getText().toString();
                         SharedPreferences.Editor editor = wpreferences.edit();
                         editor.putString("mail", user);
                         editor.commit();

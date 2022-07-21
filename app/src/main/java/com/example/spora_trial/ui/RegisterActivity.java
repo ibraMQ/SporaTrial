@@ -46,6 +46,7 @@ public class RegisterActivity  extends AppCompatActivity{
     String imgPath;
     // Patrón para validar el email
     Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    Pattern phonePat = Pattern.compile("^[0-9]{8,}");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,11 +66,13 @@ public class RegisterActivity  extends AppCompatActivity{
             public void onClick(View view) {
                 //validacion de campos
                 boolean val = true;
+                String email= edtMail.getText().toString().replaceAll("\\s+","");
+                String phone= edtPhone.getText().toString().replaceAll("\\s+","");
                 if(selectedImageBitmap == null && val){
                     Toast.makeText(getApplicationContext(),"Debe seleccionar una imagen", Toast.LENGTH_SHORT).show();
                     val = false;
                 }
-                Matcher mather = pattern.matcher(edtMail.getText().toString());
+                Matcher mather = pattern.matcher(email);
                 if(!mather.find() && val){
                     Toast.makeText(getApplicationContext(),"Ingrese un correo valido", Toast.LENGTH_SHORT).show();
                     val = false;
@@ -78,7 +81,12 @@ public class RegisterActivity  extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(),"Complete el campo de Nombre", Toast.LENGTH_SHORT).show();
                     val = false;
                 }
-                if(edtPhone.getText().toString().length()<8 && val){
+                mather = phonePat.matcher(phone);
+                if(phone.length()<8 && val){
+                    Toast.makeText(getApplicationContext(),"Ingrese un telefono valido (minimo 8 numeros)", Toast.LENGTH_SHORT).show();
+                    val = false;
+                }
+                if(!mather.find() && val){
                     Toast.makeText(getApplicationContext(),"Ingrese un telefono valido (minimo 8 numeros)", Toast.LENGTH_SHORT).show();
                     val = false;
                 }
@@ -94,9 +102,7 @@ public class RegisterActivity  extends AppCompatActivity{
                     //Insercion en BD
                     String name=edtName.getText().toString();
                     int age=Integer.parseInt(edtAge.getText().toString());
-                    String email= edtMail.getText().toString();
                     String adress= edtAdres.getText().toString();
-                    String phone= edtPhone.getText().toString();
 
                     mUserViewModel.insert(new UserEntity(name,age,email,adress,phone,imgPath));
 

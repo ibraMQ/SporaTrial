@@ -19,13 +19,19 @@
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/input_t1"
         android:ems="10"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/imgSelect"
-        app:layout_constraintStart_toStartOf="@+id/imgSelect"
+        android:paddingStart="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgSelect" />
 
     <EditText
@@ -37,9 +43,13 @@
         android:hint="@string/prompt_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral50"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
         app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        android:background="@drawable/input_t1"
+        android:paddingStart="10dp"/>
 
     <EditText
         android:id="@+id/editTextPhone"
@@ -50,9 +60,13 @@
         android:hint="@string/prompt_phone"
         android:inputType="phone"
         android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral50"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextName"
         app:layout_constraintStart_toStartOf="@+id/editTextTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextName"
+        android:background="@drawable/input_t1"
+        android:paddingStart="10dp"/>
 
     <EditText
         android:id="@+id/editTextAdress"
@@ -63,9 +77,13 @@
         android:hint="@string/prompt_adress"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral50"
         app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
         app:layout_constraintStart_toStartOf="@+id/editTextPhone"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        android:background="@drawable/input_t1"
+        android:paddingStart="10dp"/>
 
     <EditText
         android:id="@+id/editTextAge"
@@ -76,9 +94,13 @@
         android:hint="@string/prompt_age"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/material_dynamic_neutral50"
         app:layout_constraintEnd_toEndOf="@+id/editTextAdress"
         app:layout_constraintStart_toStartOf="@+id/editTextAdress"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAdress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAdress"
+        android:background="@drawable/input_t1"
+        android:paddingStart="10dp"/>
 
     <Button
         android:id="@+id/btnSave"
