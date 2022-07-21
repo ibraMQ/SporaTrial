@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.spora_trial.R;
 import com.example.spora_trial.UserViewModel;
 import com.example.spora_trial.db.UserEntity;
-import com.example.spora_trial.ui.DirectoryActivity;
 import com.example.spora_trial.ui.RegisterActivity;
 
 import java.util.List;

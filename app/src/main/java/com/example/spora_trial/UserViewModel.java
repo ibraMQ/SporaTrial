@@ -3,12 +3,10 @@ package com.example.spora_trial;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 
 import com.example.spora_trial.db.UserEntity;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class UserViewModel extends AndroidViewModel {
     private UserRepository mRep;

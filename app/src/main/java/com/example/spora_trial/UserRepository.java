@@ -3,15 +3,11 @@ package com.example.spora_trial;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.spora_trial.db.UserDao;
 import com.example.spora_trial.db.UserEntity;
 import com.example.spora_trial.db.UserRoomDatabase;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 
 public class UserRepository {
     private UserDao userDao;
@@ -25,18 +21,6 @@ public class UserRepository {
 
     public void deleteById(int idUsr){
         userDao.deleteById(idUsr);
-    }
-    //Async delete operation
-    private static  class deleteAsyncTask extends AsyncTask<Integer, Void, Void>{
-        private UserDao userDaoAsync;
-        deleteAsyncTask(UserDao dao){
-            userDaoAsync=dao;
-        }
-        @Override
-        protected Void doInBackground(Integer... integers) {
-            userDaoAsync.deleteById(integers[0]);
-            return null;
-        }
     }
 
     public List<UserEntity> getUser(String mail){
