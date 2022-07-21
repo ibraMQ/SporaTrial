@@ -1,8 +1,11 @@
-package com.example.spora_trial;
+package com.example.spora_trial.ui;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.spora_trial.R;
 
 public class DirectoryActivity extends AppCompatActivity {
     @Override
