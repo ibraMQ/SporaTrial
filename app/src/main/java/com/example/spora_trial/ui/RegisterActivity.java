@@ -3,6 +3,7 @@ package com.example.spora_trial.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -98,6 +99,12 @@ public class RegisterActivity  extends AppCompatActivity{
                     String phone= edtPhone.getText().toString();
 
                     mUserViewModel.insert(new UserEntity(name,age,email,adress,phone,imgPath));
+
+                    //guardar ultimo usuario
+                    SharedPreferences wpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = wpreferences.edit();
+                    editor.putString("mail",email);
+                    editor.commit();
 
                     Intent i = new Intent(RegisterActivity.this, DirectoryActivity.class);
                     i.putExtra("IMG",imgPath);

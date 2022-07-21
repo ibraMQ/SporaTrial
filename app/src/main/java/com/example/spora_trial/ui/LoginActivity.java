@@ -1,12 +1,15 @@
 package com.example.spora_trial.ui;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
         btnGo= findViewById(R.id.login);
         txtMail= findViewById(R.id.mailTxt);
         mUserViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        //cargar ultimo usuario
+        SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
+        String lasMail =preferences.getString("mail","");
+        txtMail.setText(lasMail, TextView.BufferType.EDITABLE);
 
         //Solicitud de permisos
         int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this,
@@ -58,6 +65,13 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(i);
                 }else {
+                    //guardar ultimo usuario
+                    SharedPreferences wpreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                    String user = txtMail.getText().toString();
+                    SharedPreferences.Editor editor = wpreferences.edit();
+                    editor.putString("mail",user);
+                    editor.commit();
+
                     Intent i = new Intent(LoginActivity.this, DirectoryActivity.class);
                     i.putExtra("IMG",log.get(0).img);
                     startActivity(i);
