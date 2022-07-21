@@ -16,7 +16,7 @@ public interface UserDao {
     void deleteById(int idUsr);
 
     @Query("SELECT * FROM users")
-    LiveData<List<UserEntity>> getAll();
+    List<UserEntity> getAll();
 
     @Query("SELECT * FROM users WHERE email LIKE :mail")
     List<UserEntity> getUser(String mail);

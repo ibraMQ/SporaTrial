@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class UserViewModel extends AndroidViewModel {
     private UserRepository mRep;
-    private LiveData<List<UserEntity>> mUsers;
+    private List<UserEntity> mUsers;
 
     public UserViewModel(Application application){
         super(application);
@@ -20,7 +20,7 @@ public class UserViewModel extends AndroidViewModel {
         mUsers=mRep.getAll();
     }
 
-    public LiveData<List<UserEntity>> getUsers() {
+    public List<UserEntity> getAll() {
         return mUsers;
     }
 

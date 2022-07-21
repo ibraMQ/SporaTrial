@@ -21,10 +21,10 @@ public class UserRepository {
         userDao = db.userDao();
     }
 
-    public LiveData<List<UserEntity>> getAll(){ return userDao.getAll();}
+    public List<UserEntity> getAll(){ return userDao.getAll();}
 
     public void deleteById(int idUsr){
-        new deleteAsyncTask(userDao).execute(idUsr);
+        userDao.deleteById(idUsr);
     }
     //Async delete operation
     private static  class deleteAsyncTask extends AsyncTask<Integer, Void, Void>{
